@@ -204,6 +204,26 @@ class Dataset[T] private[sql](
   private val id = Dataset.curId.getAndIncrement()
 
   queryExecution.assertAnalyzed()
+// scalastyle:off
+import org.apache.spark.sql.functions
+  def ConstructCase(colName: String, update: Column, where: Column): Column = {
+    functions.when(where, update).otherwise(col(colName))
+  }
+
+  def Update(colName: String, update: Column): DataFrame = {
+    val ColumnNames = columns.map(_columnName => 
+                                  if(_columnName.equals(colName)) update 
+                                  else col(_columnName))
+
+    select(ColumnNames.toSeq : _*).withColumnRenamed(update.toString, colName)
+  }
+
+  def Update(colName: String, update: Column, where: Column): DataFrame = {
+    
+    withColumn(colName, ConstructCase(colName, update, where))
+  }
+
+// scalastyle:on
 
   // Note for Spark contributors: if adding or updating any action in `Dataset`, please make sure
   // you wrap it with `withNewExecutionId` if this actions doesn't call other action.
