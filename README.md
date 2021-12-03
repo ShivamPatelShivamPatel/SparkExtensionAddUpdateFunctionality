@@ -1,5 +1,10 @@
 ## Add support for Implementing Updates as Queries to Spark. Forked from original
-
+## Please use DataFrame.Update(colName: String, updateCond: Column) for unconditional updates of columns in a dataframe
+## and use DataFrame.Update(colName: String, updateCond: Column, whereCond: Column) for updates based on condition whereCond
+## to build run the following commands: 
+## > git clone https://github.com/ShivamPatelShivamPatel/SparkExtensionAddUpdateFunctionality.git
+## > cd SparkExtensionAddUpdateFunctionality
+## > build/mvn -DskipTests=true clean install
 # Apache Spark
 
 Spark is a unified analytics engine for large-scale data processing. It provides
