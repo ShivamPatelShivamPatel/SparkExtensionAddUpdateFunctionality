@@ -1,4 +1,4 @@
-## Added support for Implementing Updates as Queries to Spark via simple API using internal methods.  As well for certain classes of updates of the form a -> f(a) + X and a -> f(a) * X, added custom rules in Optimizer class in Optimizer.scala to decrease references to a in Projection optimizations. Forked from original
+## Added support for Implementing Updates as Queries to Spark via simple API using internal methods.  As well for certain classes of updates of the form a -> f(a) + X and a -> f(a) * X, added custom rules in Optimizer class in Optimizer.scala to decrease references to attribute a in Projection optimizations,see: https://github.com/ShivamPatelShivamPatel/SparkExtensionAddUpdateFunctionality/blob/master/Optimizer.scala. Forked from original
 ## Please use DataFrame.Update(colName: String, updateCond: Column) for unconditional updates of columns in a dataframe
 ## and use DataFrame.Update(colName: String, updateCond: Column, whereCond: Column) for updates based on condition whereCond
 ## to build run the following commands: 
